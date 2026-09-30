@@ -1,0 +1,651 @@
+{
+  "data_source": "lending_club_kaggle",
+  "generated_at": "2026-09-30T22:47:44.363065+00:00",
+  "population": {
+    "n_raw_rows": 2260701,
+    "n_in_scope": 621169,
+    "n_good": 534418,
+    "n_bad": 86604,
+    "n_dropped_non_terminal": 147,
+    "dropped_status_counts": {
+      "Current": 72,
+      "Late (31-120 days)": 61,
+      "In Grace Period": 9,
+      "Late (16-30 days)": 5
+    }
+  },
+  "splits": {
+    "train": {
+      "n": 175426,
+      "default_rate": 0.12630396862494728,
+      "issue_d_min": "2007-06-01",
+      "issue_d_max": "2013-12-01"
+    },
+    "validation": {
+      "n": 162570,
+      "default_rate": 0.13726394783785445,
+      "issue_d_min": "2014-01-01",
+      "issue_d_max": "2014-12-01"
+    },
+    "test": {
+      "n": 283026,
+      "default_rate": 0.14886264866125373,
+      "issue_d_min": "2015-01-01",
+      "issue_d_max": "2015-12-01"
+    }
+  },
+  "features": {
+    "n_features": 24,
+    "names": [
+      "fico_mid",
+      "credit_hist_years",
+      "emp_length_years",
+      "loan_to_income",
+      "revol_bal_to_income",
+      "open_to_total_acc",
+      "loan_amnt",
+      "annual_inc",
+      "dti",
+      "revol_util",
+      "revol_bal",
+      "open_acc",
+      "total_acc",
+      "delinq_2yrs",
+      "inq_last_6mths",
+      "pub_rec",
+      "pub_rec_bankruptcies",
+      "mort_acc",
+      "mths_since_last_delinq",
+      "emp_length_missing",
+      "no_delinq_history",
+      "home_ownership",
+      "verification_status",
+      "purpose"
+    ],
+    "dropped_constant_in_train": [
+      "application_type"
+    ]
+  },
+  "scorecard": {
+    "selected_features": [
+      "fico_mid",
+      "loan_to_income",
+      "open_to_total_acc",
+      "annual_inc",
+      "dti",
+      "revol_util",
+      "inq_last_6mths",
+      "mort_acc",
+      "home_ownership",
+      "purpose"
+    ],
+    "dropped_low_iv": [
+      "credit_hist_years",
+      "emp_length_years",
+      "revol_bal_to_income",
+      "loan_amnt",
+      "revol_bal",
+      "open_acc",
+      "total_acc",
+      "delinq_2yrs",
+      "pub_rec",
+      "pub_rec_bankruptcies",
+      "mths_since_last_delinq",
+      "emp_length_missing",
+      "no_delinq_history",
+      "verification_status"
+    ],
+    "dropped_sign_constraint": [],
+    "coefficients": {
+      "fico_mid": -0.799841110375245,
+      "loan_to_income": -0.7094974259593871,
+      "open_to_total_acc": -0.36003562391591143,
+      "annual_inc": -0.6078932559028657,
+      "dti": -0.47778387100328923,
+      "revol_util": -0.32249085892645996,
+      "inq_last_6mths": -1.1117925053197022,
+      "mort_acc": -0.24948491874885784,
+      "home_ownership": -0.2518656127681485,
+      "purpose": -1.0722896195731415
+    },
+    "information_value": {
+      "fico_mid": 0.14181672246235877,
+      "annual_inc": 0.08729463093296086,
+      "loan_to_income": 0.04031681977635247,
+      "inq_last_6mths": 0.03941525876732167,
+      "revol_util": 0.035803190252583994,
+      "dti": 0.03503091039457112,
+      "purpose": 0.034885022332591394,
+      "mort_acc": 0.03454369783468793,
+      "home_ownership": 0.02824861514499107,
+      "open_to_total_acc": 0.021771217692444826,
+      "credit_hist_years": 0.01931203354884883,
+      "revol_bal_to_income": 0.012894424810149605,
+      "total_acc": 0.012299545057917643,
+      "emp_length_missing": 0.010033200743668414,
+      "revol_bal": 0.00970913906489411,
+      "emp_length_years": 0.008046143131949702,
+      "loan_amnt": 0.005054775844539921,
+      "mths_since_last_delinq": 0.0010505802284343259,
+      "verification_status": 0.0010417758877952856,
+      "open_acc": 0.001028013292702489,
+      "pub_rec": 0.0007357283815992753,
+      "pub_rec_bankruptcies": 0.0005111860971908671,
+      "delinq_2yrs": 0.00036384971718184296,
+      "no_delinq_history": 0.000334952150629357
+    }
+  },
+  "lightgbm": {
+    "best_iteration": 342,
+    "top_features_gain": {
+      "fico_mid": 36033.61484718323,
+      "annual_inc": 22286.605635404587,
+      "purpose": 15939.263326406479,
+      "inq_last_6mths": 13783.323356866837,
+      "loan_to_income": 12799.754730939865,
+      "revol_util": 10918.803464651108,
+      "dti": 8596.293194770813,
+      "revol_bal_to_income": 8470.877388000488,
+      "credit_hist_years": 7025.82713842392,
+      "revol_bal": 6997.8279457092285,
+      "loan_amnt": 6529.018684864044,
+      "open_to_total_acc": 5833.857971906662,
+      "mort_acc": 4216.984638929367,
+      "emp_length_years": 3418.3595702648163,
+      "open_acc": 3230.3304324150085
+    }
+  },
+  "validation_uncalibrated": {
+    "scorecard": {
+      "n": 162570,
+      "auc": 0.6484511345021171,
+      "gini": 0.2969022690042342,
+      "ks": 0.21583749703744137,
+      "brier": 0.11464158492722164,
+      "log_loss": 0.3836323009342821,
+      "mean_pd": 0.13131541430957294,
+      "observed_default_rate": 0.13726394783785445
+    },
+    "lightgbm": {
+      "n": 162570,
+      "auc": 0.6636945693798194,
+      "gini": 0.3273891387596388,
+      "ks": 0.23600562603183328,
+      "brier": 0.11378223107544143,
+      "log_loss": 0.3800071557765768,
+      "mean_pd": 0.13179533089522125,
+      "observed_default_rate": 0.13726394783785445
+    }
+  },
+  "test_uncalibrated": {
+    "scorecard": {
+      "n": 283026,
+      "auc": 0.6496069670699122,
+      "gini": 0.29921393413982433,
+      "ks": 0.21435955324462513,
+      "brier": 0.12281434318504098,
+      "log_loss": 0.40480818429581095,
+      "mean_pd": 0.12696280316225203,
+      "observed_default_rate": 0.14886264866125373
+    },
+    "lightgbm": {
+      "n": 283026,
+      "auc": 0.6658003206978654,
+      "gini": 0.33160064139573087,
+      "ks": 0.23917011737373411,
+      "brier": 0.12157866229328858,
+      "log_loss": 0.39998260461054413,
+      "mean_pd": 0.13010862134689077,
+      "observed_default_rate": 0.14886264866125373
+    }
+  },
+  "test_calibrated": {
+    "scorecard": {
+      "n": 283026,
+      "auc": 0.6495222351079393,
+      "gini": 0.29904447021587854,
+      "ks": 0.2138515498721974,
+      "brier": 0.12254000279177717,
+      "log_loss": 0.4036671141519416,
+      "mean_pd": 0.1328286967100549,
+      "observed_default_rate": 0.14886264866125373
+    },
+    "lightgbm": {
+      "n": 283026,
+      "auc": 0.6655387283747829,
+      "gini": 0.3310774567495658,
+      "ks": 0.23914961023959608,
+      "brier": 0.12138348019581763,
+      "log_loss": 0.39913343048272143,
+      "mean_pd": 0.13547643919808053,
+      "observed_default_rate": 0.14886264866125373
+    }
+  },
+  "champion": {
+    "model": "lightgbm",
+    "rule": "LightGBM validation Gini uplift 0.0305 >= required 0.03",
+    "min_gini_uplift": 0.03
+  },
+  "reason_codes": {
+    "declined_share_test": 0.19036413615710218,
+    "frequency_among_declined": [
+      {
+        "feature": "fico_mid",
+        "reason": "Credit score",
+        "primary_reason_share": 0.549890493336798,
+        "any_top_reason_share": 0.8965626044025391
+      },
+      {
+        "feature": "annual_inc",
+        "reason": "Income",
+        "primary_reason_share": 0.12318571587661012,
+        "any_top_reason_share": 0.6221648910501504
+      },
+      {
+        "feature": "loan_to_income",
+        "reason": "Loan amount relative to income",
+        "primary_reason_share": 0.0869000334088125,
+        "any_top_reason_share": 0.4867292772560229
+      },
+      {
+        "feature": "purpose",
+        "reason": "Loan purpose",
+        "primary_reason_share": 0.08558224136010988,
+        "any_top_reason_share": 0.20286573369464345
+      },
+      {
+        "feature": "inq_last_6mths",
+        "reason": "Credit inquiries in the last 6 months",
+        "primary_reason_share": 0.07587512528304688,
+        "any_top_reason_share": 0.28558966554066595
+      },
+      {
+        "feature": "revol_util",
+        "reason": "Revolving credit utilization",
+        "primary_reason_share": 0.03778907903040202,
+        "any_top_reason_share": 0.15852481532350868
+      },
+      {
+        "feature": "emp_length_missing",
+        "reason": "Employment length not provided",
+        "primary_reason_share": 0.015906306841382382,
+        "any_top_reason_share": 0.14800103938527784
+      },
+      {
+        "feature": "revol_bal_to_income",
+        "reason": "Revolving balances relative to income",
+        "primary_reason_share": 0.00915030253535766,
+        "any_top_reason_share": 0.1690300308103493
+      },
+      {
+        "feature": "dti",
+        "reason": "Debt-to-income ratio",
+        "primary_reason_share": 0.0071457737852184565,
+        "any_top_reason_share": 0.4398455770444337
+      },
+      {
+        "feature": "loan_amnt",
+        "reason": "Loan amount requested",
+        "primary_reason_share": 0.006291993021270277,
+        "any_top_reason_share": 0.07437172872044248
+      },
+      {
+        "feature": "mths_since_last_delinq",
+        "reason": "Time since most recent delinquency",
+        "primary_reason_share": 0.0008909016667285348,
+        "any_top_reason_share": 0.022569508890456214
+      },
+      {
+        "feature": "revol_bal",
+        "reason": "Revolving credit balances",
+        "primary_reason_share": 0.0008723412153383571,
+        "any_top_reason_share": 0.09204127844389176
+      },
+      {
+        "feature": "open_acc",
+        "reason": "Number of open credit accounts",
+        "primary_reason_share": 0.00029696722224284493,
+        "any_top_reason_share": 0.06943464865065518
+      },
+      {
+        "feature": "credit_hist_years",
+        "reason": "Length of credit history",
+        "primary_reason_share": 9.280225695088904e-05,
+        "any_top_reason_share": 0.029009985522847916
+      },
+      {
+        "feature": "open_to_total_acc",
+        "reason": "Proportion of credit accounts currently open",
+        "primary_reason_share": 7.424180556071123e-05,
+        "any_top_reason_share": 0.13385797542596237
+      },
+      {
+        "feature": "emp_length_years",
+        "reason": "Length of employment",
+        "primary_reason_share": 3.7120902780355616e-05,
+        "any_top_reason_share": 0.025817587883737333
+      },
+      {
+        "feature": "home_ownership",
+        "reason": "Home ownership status",
+        "primary_reason_share": 1.8560451390177808e-05,
+        "any_top_reason_share": 0.06770852667136865
+      },
+      {
+        "feature": "total_acc",
+        "reason": "Total number of credit accounts",
+        "primary_reason_share": 0.0,
+        "any_top_reason_share": 0.000389769479193734
+      },
+      {
+        "feature": "mort_acc",
+        "reason": "Number of mortgage accounts",
+        "primary_reason_share": 0.0,
+        "any_top_reason_share": 0.03110731652993801
+      },
+      {
+        "feature": "no_delinq_history",
+        "reason": "Delinquency history",
+        "primary_reason_share": 0.0,
+        "any_top_reason_share": 0.04406251160028212
+      },
+      {
+        "feature": "verification_status",
+        "reason": "Income verification status",
+        "primary_reason_share": 0.0,
+        "any_top_reason_share": 0.00031552767363302275
+      }
+    ],
+    "example_highest_pd_applicant": {
+      "pd": 0.5555555555555556,
+      "codes": [
+        {
+          "feature": "revol_bal_to_income",
+          "reason": "Revolving balances relative to income",
+          "contribution": 0.3456
+        },
+        {
+          "feature": "emp_length_missing",
+          "reason": "Employment length not provided",
+          "contribution": 0.3331
+        },
+        {
+          "feature": "revol_bal",
+          "reason": "Revolving credit balances",
+          "contribution": 0.311
+        },
+        {
+          "feature": "inq_last_6mths",
+          "reason": "Credit inquiries in the last 6 months",
+          "contribution": 0.2513
+        }
+      ]
+    }
+  },
+  "psi": {
+    "score": {
+      "psi": 0.004130462662650454,
+      "status": "stable"
+    },
+    "features": [
+      {
+        "variable": "fico_mid",
+        "psi": 0.052582943767204,
+        "status": "stable"
+      },
+      {
+        "variable": "annual_inc",
+        "psi": 0.010528821221634366,
+        "status": "stable"
+      },
+      {
+        "variable": "purpose",
+        "psi": 0.07700702150906154,
+        "status": "stable"
+      },
+      {
+        "variable": "inq_last_6mths",
+        "psi": 0.06529119739277908,
+        "status": "stable"
+      },
+      {
+        "variable": "loan_to_income",
+        "psi": 0.004242465090225096,
+        "status": "stable"
+      },
+      {
+        "variable": "revol_util",
+        "psi": 0.03605670714550564,
+        "status": "stable"
+      },
+      {
+        "variable": "dti",
+        "psi": 0.08650014904823902,
+        "status": "stable"
+      },
+      {
+        "variable": "revol_bal_to_income",
+        "psi": 0.007582698826055499,
+        "status": "stable"
+      }
+    ]
+  },
+  "lgd": {
+    "lgd": 0.8984385562334625,
+    "n_defaults": 22157,
+    "total_ead": 148315967.72000003,
+    "net_recoveries": 15063183.815274384
+  },
+  "pricing": {
+    "assumptions": {
+      "cost_of_funds": 0.04,
+      "operating_cost": 0.02,
+      "margin": 0.03,
+      "rate_floor": 0.06,
+      "rate_cap": 0.36,
+      "term_months": 36
+    },
+    "average_life_years": 1.5,
+    "benchmark_by_grade": [
+      {
+        "grade": "A",
+        "n": 70118,
+        "observed_default_rate": 0.054222881428449186,
+        "mean_model_pd": 0.07798594628653639,
+        "lc_mean_rate": 0.0690256310790382,
+        "model_mean_rate": 0.13671038732545074,
+        "rate_diff": 0.06768475624641254
+      },
+      {
+        "grade": "B",
+        "n": 91725,
+        "observed_default_rate": 0.11895339329517579,
+        "mean_model_pd": 0.12587924561027697,
+        "lc_mean_rate": 0.10019494140092668,
+        "model_mean_rate": 0.16539514346087064,
+        "rate_diff": 0.06520020205994397
+      },
+      {
+        "grade": "C",
+        "n": 77423,
+        "observed_default_rate": 0.1943995970189737,
+        "mean_model_pd": 0.1630921778595348,
+        "lc_mean_rate": 0.1324155070198778,
+        "model_mean_rate": 0.1876839127776829,
+        "rate_diff": 0.05526840575780509
+      },
+      {
+        "grade": "D",
+        "n": 32711,
+        "observed_default_rate": 0.2622053743389074,
+        "mean_model_pd": 0.19171187718222615,
+        "lc_mean_rate": 0.1663862553880958,
+        "model_mean_rate": 0.2048047581351636,
+        "rate_diff": 0.03841850274706782
+      },
+      {
+        "grade": "E",
+        "n": 9443,
+        "observed_default_rate": 0.3283914010378058,
+        "mean_model_pd": 0.21644448040898526,
+        "lc_mean_rate": 0.19107717886264958,
+        "model_mean_rate": 0.21956162966764733,
+        "rate_diff": 0.028484450804997757
+      },
+      {
+        "grade": "F",
+        "n": 1361,
+        "observed_default_rate": 0.4239529757531227,
+        "mean_model_pd": 0.23732399625212744,
+        "lc_mean_rate": 0.23537648787656137,
+        "model_mean_rate": 0.23202149441619718,
+        "rate_diff": -0.0033549934603641918
+      },
+      {
+        "grade": "G",
+        "n": 245,
+        "observed_default_rate": 0.46122448979591835,
+        "mean_model_pd": 0.2604334972496616,
+        "lc_mean_rate": 0.26865959183673466,
+        "model_mean_rate": 0.2452205680160893,
+        "rate_diff": -0.02343902382064536
+      }
+    ]
+  },
+  "cutoffs": [
+    {
+      "pd_cutoff": 0.05,
+      "approval_rate": 0.07751937984496124,
+      "n_approved": 21940,
+      "bad_rate_approved": 0.033272561531449404,
+      "bad_rate_declined": 0.1585761013612373
+    },
+    {
+      "pd_cutoff": 0.075,
+      "approval_rate": 0.2188703511338181,
+      "n_approved": 61946,
+      "bad_rate_approved": 0.05575824104865528,
+      "bad_rate_declined": 0.17495024425547312
+    },
+    {
+      "pd_cutoff": 0.1,
+      "approval_rate": 0.3320648986312212,
+      "n_approved": 93983,
+      "bad_rate_approved": 0.07066171541661789,
+      "bad_rate_declined": 0.18774035536888434
+    },
+    {
+      "pd_cutoff": 0.125,
+      "approval_rate": 0.45372156621653137,
+      "n_approved": 128415,
+      "bad_rate_approved": 0.08397772845851341,
+      "bad_rate_declined": 0.20275400844700572
+    },
+    {
+      "pd_cutoff": 0.15,
+      "approval_rate": 0.6171411813755626,
+      "n_approved": 174667,
+      "bad_rate_approved": 0.10083759382138584,
+      "bad_rate_declined": 0.22627562085290562
+    },
+    {
+      "pd_cutoff": 0.175,
+      "approval_rate": 0.7271593422512419,
+      "n_approved": 205805,
+      "bad_rate_approved": 0.11307305459051044,
+      "bad_rate_declined": 0.2442470312479766
+    },
+    {
+      "pd_cutoff": 0.2,
+      "approval_rate": 0.8096358638428979,
+      "n_approved": 229148,
+      "bad_rate_approved": 0.12202157557561052,
+      "bad_rate_declined": 0.2630201566502097
+    },
+    {
+      "pd_cutoff": 0.225,
+      "approval_rate": 0.8688671712139521,
+      "n_approved": 245912,
+      "bad_rate_approved": 0.1288509710790852,
+      "bad_rate_declined": 0.2814571320795387
+    },
+    {
+      "pd_cutoff": 0.25,
+      "approval_rate": 0.9469518701462056,
+      "n_approved": 268012,
+      "bad_rate_approved": 0.13937435637210274,
+      "bad_rate_declined": 0.31823631277474357
+    },
+    {
+      "pd_cutoff": 0.275,
+      "approval_rate": 0.9592157610961537,
+      "n_approved": 271483,
+      "bad_rate_approved": 0.14128324793817662,
+      "bad_rate_declined": 0.3271246642987092
+    },
+    {
+      "pd_cutoff": 0.3,
+      "approval_rate": 0.9924529901846474,
+      "n_approved": 280890,
+      "bad_rate_approved": 0.14707536758161557,
+      "bad_rate_declined": 0.3838951310861423
+    },
+    {
+      "pd_cutoff": 0.325,
+      "approval_rate": 0.9924671231618296,
+      "n_approved": 280894,
+      "bad_rate_approved": 0.14707327319202262,
+      "bad_rate_declined": 0.38461538461538464
+    },
+    {
+      "pd_cutoff": 0.35,
+      "approval_rate": 0.9927568491940669,
+      "n_approved": 280976,
+      "bad_rate_approved": 0.14714779910027903,
+      "bad_rate_declined": 0.38390243902439025
+    },
+    {
+      "pd_cutoff": 0.375,
+      "approval_rate": 0.9998410040066991,
+      "n_approved": 282981,
+      "bad_rate_approved": 0.1488156448666165,
+      "bad_rate_declined": 0.4444444444444444
+    },
+    {
+      "pd_cutoff": 0.4,
+      "approval_rate": 0.9998728032053592,
+      "n_approved": 282990,
+      "bad_rate_approved": 0.14881797943390226,
+      "bad_rate_declined": 0.5
+    }
+  ],
+  "policy_cutoff": {
+    "pd_cutoff": 0.2,
+    "approval_rate": 0.8096358638428979,
+    "n_approved": 229148.0,
+    "bad_rate_approved": 0.12202157557561052,
+    "bad_rate_declined": 0.2630201566502097
+  },
+  "fairness": {
+    "note": "Lending Club data has no protected attributes. This is a geographic (redlining-style) proxy review by state and 3-digit ZIP, not a full fair-lending analysis. Approval rates are hypothetical model decisions over loans Lending Club already booked.",
+    "pd_cutoff": 0.2,
+    "min_group_size": 500,
+    "air_threshold": 0.8,
+    "by_state": {
+      "n_groups": 47,
+      "n_flagged": 0,
+      "min_air": 0.8533949673135968,
+      "min_air_group": "HI",
+      "flagged_groups": []
+    },
+    "by_zip3": {
+      "n_groups": 162,
+      "n_flagged": 1,
+      "min_air": 0.7650301099061261,
+      "min_air_group": "482",
+      "flagged_groups": [
+        "482"
+      ]
+    }
+  }
+}
