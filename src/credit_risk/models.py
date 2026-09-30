@@ -90,11 +90,10 @@ class WoEBinner:
 class WoEScorecard:
     """WoE transform + logistic regression, with IV screening and a sign constraint."""
 
-    def __init__(self, fcfg: FeatureConfig, mcfg: ModelConfig, min_iv: float = 0.02):
+    def __init__(self, fcfg: FeatureConfig, mcfg: ModelConfig):
         self.binner = WoEBinner(fcfg.woe_bins, fcfg.woe_smoothing)
         self.C = mcfg.scorecard_C
-        self.seed = mcfg.seed
-        self.min_iv = min_iv
+        self.min_iv = mcfg.scorecard_min_iv
         self.features_: list[str] = []
         self.dropped_low_iv_: list[str] = []
         self.dropped_sign_: list[str] = []

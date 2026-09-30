@@ -66,6 +66,12 @@ class ModelConfig:
     # L2 inverse regularisation for the scorecard logistic regression.
     scorecard_C: float = 1.0
     n_reason_codes: int = 4
+    # Champion rule, fixed BEFORE seeing results and evaluated on VALIDATION:
+    # LightGBM must beat the scorecard by >= this Gini to justify the added
+    # model-risk burden of a less transparent model; otherwise the scorecard wins.
+    champion_min_gini_uplift: float = 0.03
+    # Scorecard features must carry at least this Information Value.
+    scorecard_min_iv: float = 0.02
 
 
 @dataclass(frozen=True)
