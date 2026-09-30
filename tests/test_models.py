@@ -74,3 +74,17 @@ def test_metric_definitions():
     m = pd_metrics(y, p)
     assert m["auc"] == 1.0 and m["gini"] == 1.0 and ks_statistic(y, p) == 1.0
     assert calibration_table(y, p, n_bins=2)["n"].sum() == 4
+
+
+def test_woe_separates_zero_inflated_flag():
+    # Regression: when every quantile cut point equals the minimum (a flag set on
+    # <10% of rows), values equal to a cut point must fall in the bin ending there,
+    # i.e. bins are (lo, hi]. Otherwise 0s and 1s collapse into one bin and IV ~ 0.
+    import pandas as pd
+
+    x = pd.DataFrame({"flag": np.r_[np.zeros(950), np.ones(50)]})
+    y = np.r_[np.zeros(900), np.ones(50), np.zeros(25), np.ones(25)]
+    b = WoEBinner(10, 0.5).fit(x, y)
+    w = b.transform(x)["flag"]
+    assert w.iloc[0] > 0 > w.iloc[-1]  # flag=0 safer than average, flag=1 riskier
+    assert b.iv_["flag"] > 0.3

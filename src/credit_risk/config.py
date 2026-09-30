@@ -81,7 +81,7 @@ class DecisionConfig:
     # Fair-lending proxy review.
     min_group_size: int = 500
     air_threshold: float = 0.80  # four-fifths rule
-    cutoff_grid: tuple = tuple(round(x, 2) for x in [0.05 + 0.025 * i for i in range(15)])
+    cutoff_grid: tuple = tuple(round(0.05 + 0.025 * i, 3) for i in range(15))  # 0.050 .. 0.400
 
 
 @dataclass(frozen=True)

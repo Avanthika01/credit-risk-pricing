@@ -43,7 +43,7 @@ class WoEBinner:
     def _bin(self, col: str, x: pd.Series) -> pd.Series:
         if isinstance(x.dtype, pd.CategoricalDtype):
             return x.astype(str)
-        idx = np.searchsorted(self.edges_[col], x.to_numpy(dtype=float), side="right")
+        idx = np.searchsorted(self.edges_[col], x.to_numpy(dtype=float), side="left")  # bins are (lo, hi]
         return pd.Series(idx, index=x.index).astype(str)
 
     def fit(self, X: pd.DataFrame, y: pd.Series) -> "WoEBinner":

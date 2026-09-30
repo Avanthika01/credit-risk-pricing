@@ -52,3 +52,10 @@ def test_model_reason_codes_on_synthetic(splits, cfg):
     codes = reason_codes(m.contributions(fb.transform(test.iloc[:100])), n=4)
     assert all(len(r) <= 4 for r in codes)
     assert any(len(r) > 0 for r in codes)
+
+
+def test_psi_detects_shift_in_zero_inflated_flag():
+    # Regression: a flag moving from 5% to 50% prevalence must register as a shift.
+    expected = np.r_[np.zeros(950), np.ones(50)]
+    actual = np.r_[np.zeros(500), np.ones(500)]
+    assert psi(expected, actual) > 0.25

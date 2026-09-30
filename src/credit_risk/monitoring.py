@@ -33,8 +33,8 @@ def psi(expected, actual, n_bins: int = 10) -> float:
         pa = a.astype(str).value_counts(normalize=True).reindex(levels, fill_value=0.0).to_numpy()
     else:
         edges = np.unique(np.quantile(e.to_numpy(float), np.linspace(0, 1, n_bins + 1)[1:-1]))
-        be = np.searchsorted(edges, e.to_numpy(float), side="right")
-        ba = np.searchsorted(edges, a.to_numpy(float), side="right")
+        be = np.searchsorted(edges, e.to_numpy(float), side="left")
+        ba = np.searchsorted(edges, a.to_numpy(float), side="left")
         k = len(edges) + 1
         pe = np.bincount(be, minlength=k) / len(be)
         pa = np.bincount(ba, minlength=k) / len(ba)

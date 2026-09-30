@@ -82,7 +82,7 @@ def cutoff_chart(table: pd.DataFrame, chosen: float, path: Path, subtitle: str) 
     ax.plot(table["approval_rate"], table["bad_rate_approved"], color=SERIES[0], linewidth=2, marker="o",
             markersize=5, markeredgecolor=SURFACE, markeredgewidth=1.2)
     for _, r in table.iterrows():
-        if any(np.isclose(r["pd_cutoff"], v) for v in (0.10, 0.30, 0.40)):
+        if any(np.isclose(r["pd_cutoff"], v) for v in (0.10, 0.15, 0.25)):
             ax.annotate(f"PD \u2264 {r['pd_cutoff']:.2f}", (r["approval_rate"], r["bad_rate_approved"]),
                         textcoords="offset points", xytext=(-6, 8), ha="right", fontsize=8, color=INK_2)
     c = table.loc[np.isclose(table["pd_cutoff"], chosen)]
@@ -118,10 +118,10 @@ def to_markdown(df: pd.DataFrame, floatfmt: dict | None = None, default_fmt: str
     floatfmt = floatfmt or {}
     cols = list(df.columns)
     lines = ["| " + " | ".join(str(c) for c in cols) + " |", "|" + "|".join("---" for _ in cols) + "|"]
-    for _, row in df.iterrows():
+    # Iterate column-wise: iterrows() would upcast integer columns to float in mixed rows.
+    for values in zip(*(df[c] for c in cols)):
         cells = []
-        for c in cols:
-            v = row[c]
+        for c, v in zip(cols, values):
             if isinstance(v, (float, np.floating)):
                 cells.append("" if pd.isna(v) else floatfmt.get(c, default_fmt).format(v))
             elif isinstance(v, (bool, np.bool_)):
